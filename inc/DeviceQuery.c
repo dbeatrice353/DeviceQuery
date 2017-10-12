@@ -50,3 +50,212 @@ void DQ_GetNumberOfDevices(int *number){
   free(platform_ids);
   return;
 }
+
+void DQ_GetDeviceInfo(cl_device_id device_id, DeviceRecord* device_record){
+  printf("get device info\n");
+  cl_int status;
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_ADDRESS_BITS,
+                           sizeof(cl_uint),
+                           &(device_record->address_bits),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_AVAILABLE,
+                           sizeof(cl_bool),
+                           &(device_record->available),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_COMPILER_AVAILABLE,
+                           sizeof(cl_bool),
+                           &(device_record->compiler_available),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_DOUBLE_FP_CONFIG,
+                           sizeof(cl_device_fp_config),
+                           &(device_record->double_fp_config),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_ENDIAN_LITTLE,
+                           sizeof(cl_bool),
+                           &(device_record->endian_little),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_ERROR_CORRECTION_SUPPORT,
+                           sizeof(cl_bool),
+                           &(device_record->error_correction_support),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_EXECUTION_CAPABILITIES,
+                           sizeof(cl_device_exec_capabilities),
+                           &(device_record->execution_capabilities),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_EXTENSIONS,
+                           sizeof(char)*EXTENSIONS_BUFFER_SIZE,
+                           device_record->extensions,
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_GLOBAL_MEM_CACHE_SIZE,
+                           sizeof(cl_ulong),
+                           &(device_record->global_mem_cache_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_GLOBAL_MEM_CACHE_TYPE,
+                           sizeof(cl_device_mem_cache_type),
+                           &(device_record->global_mem_cache_type),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE,
+                           sizeof(cl_uint),
+                           &(device_record->global_mem_cachline_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_GLOBAL_MEM_SIZE,
+                           sizeof(cl_ulong),
+                           &(device_record->global_mem_size),
+                           NULL);
+                           /*
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_HALF_FP_CONFIG,
+                           sizeof(cl_device_fp_config),
+                           &(device_record->half_fp_config),
+                           NULL);
+                           */
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_IMAGE_SUPPORT,
+                           sizeof(cl_bool),
+                           &(device_record->image_support),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_IMAGE2D_MAX_HEIGHT,
+                           sizeof(size_t),
+                           &(device_record->image2d_max_height),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_IMAGE2D_MAX_WIDTH,
+                           sizeof(size_t),
+                           &(device_record->image2d_max_width),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_IMAGE3D_MAX_DEPTH,
+                           sizeof(size_t),
+                           &(device_record->image3d_max_depth),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_IMAGE3D_MAX_HEIGHT,
+                           sizeof(size_t),
+                           &(device_record->image3d_max_height),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_IMAGE3D_MAX_WIDTH,
+                           sizeof(size_t),
+                           &(device_record->image3d_max_width),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_LOCAL_MEM_SIZE,
+                           sizeof(cl_ulong),
+                           &(device_record->local_mem_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_LOCAL_MEM_TYPE,
+                           sizeof(cl_ulong),
+                           &(device_record->local_mem_type),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_CLOCK_FREQUENCY,
+                           sizeof(cl_uint),
+                           &(device_record->max_clock_frequency),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_COMPUTE_UNITS,
+                           sizeof(cl_uint),
+                           &(device_record->max_compute_units),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_CONSTANT_ARGS,
+                           sizeof(cl_uint),
+                           &(device_record->max_constant_args),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE,
+                           sizeof(cl_ulong),
+                           &(device_record->max_constant_buffer_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_MEM_ALLOC_SIZE,
+                           sizeof(cl_ulong),
+                           &(device_record->max_mem_alloc_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_PARAMETER_SIZE,
+                           sizeof(size_t),
+                           &(device_record->max_parameter_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_READ_IMAGE_ARGS,
+                           sizeof(cl_uint),
+                           &(device_record->max_read_image_args),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_SAMPLERS,
+                           sizeof(cl_uint),
+                           &(device_record->max_samplers),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_WORK_GROUP_SIZE,
+                           sizeof(size_t),
+                           &(device_record->max_work_group_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS,
+                           sizeof(cl_uint),
+                           &(device_record->max_work_item_dimensions),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_WORK_ITEM_SIZES,
+                           sizeof(size_t)*MAX_WORK_ITEM_SIZES_BUFFER_SIZE,
+                           device_record->max_work_item_sizes,
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MAX_WRITE_IMAGE_ARGS,
+                           sizeof(cl_uint),
+                           &(device_record->max_write_image_args),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MEM_BASE_ADDR_ALIGN,
+                           sizeof(cl_uint),
+                           &(device_record->mem_base_addr_align),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE,
+                           sizeof(cl_uint),
+                           &(device_record->min_data_type_align_size),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_NAME,
+                           sizeof(char)*NAME_BUFFER_SIZE,
+                           device_record->name,
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PLATFORM,
+                           sizeof(cl_platform_id),
+                           &(device_record->platform),
+                           NULL);
+  /*
+  cl_uint                     preferred_vector_width_char;
+  cl_uint                     preferred_vector_width_short;
+  cl_uint                     preferred_vector_width_int;
+  cl_uint                     preferred_vector_width_long;
+  cl_uint                     preferred_vector_width_float;
+  cl_uint                     preferred_vector_width_double;
+  char                        profile[PROFILE_BUFFER_SIZE];
+  size_t                      profiling_timer_resolution;
+  cl_command_queue_properties queue_properties;
+  cl_device_fp_config         single_fp_config;
+  cl_device_type              type;
+  char                        vendor[VENDOR_BUFFER_SIZE];
+  cl_uint                     vendor_id;
+  char                        device_version[DEVICE_VERSION_BUFFER_SIZE];
+  char                        driver_version[DRIVER_VERSION_BUFFER_SIZE];
+  */
+}

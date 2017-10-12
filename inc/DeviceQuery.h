@@ -13,20 +13,13 @@
 #define DRIVER_VERSION_BUFFER_SIZE 256
 #define MAX_WORK_ITEM_SIZES_BUFFER_SIZE 3
 
-void DQ_GetNumberOfDevices(int *number);
 
-/*
- *
- *  get the number of devices.
- *
- */
-
-typedef struct DeviceRecord{
+typedef struct{
   cl_uint                     address_bits;
   cl_bool                     available;
-  cl_bool                     compiler_avaiable;
+  cl_bool                     compiler_available;
   cl_device_fp_config         double_fp_config;
-  cl_bool                     little_endian;
+  cl_bool                     endian_little;
   cl_bool                     error_correction_support;
   cl_device_exec_capabilities execution_capabilities;
   char                        extensions[EXTENSIONS_BUFFER_SIZE];
@@ -56,7 +49,7 @@ typedef struct DeviceRecord{
   size_t                      max_work_item_sizes[MAX_WORK_ITEM_SIZES_BUFFER_SIZE];
   cl_uint                     max_write_image_args;
   cl_uint                     mem_base_addr_align;
-  cl_uint                     data_type_align_size;
+  cl_uint                     min_data_type_align_size;
   char                        name[NAME_BUFFER_SIZE];
   cl_platform_id              platform;
   cl_uint                     preferred_vector_width_char;
@@ -74,6 +67,10 @@ typedef struct DeviceRecord{
   cl_uint                     vendor_id;
   char                        device_version[DEVICE_VERSION_BUFFER_SIZE];
   char                        driver_version[DRIVER_VERSION_BUFFER_SIZE];
-};
+} DeviceRecord;
+
+void DQ_GetNumberOfDevices(int *number);
+
+void DQ_GetDeviceInfo(cl_device_id device_id, DeviceRecord *device_record);
 
 #endif // DEVICE_QUERY
