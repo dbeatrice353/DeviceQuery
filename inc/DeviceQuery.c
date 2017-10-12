@@ -241,21 +241,74 @@ void DQ_GetDeviceInfo(cl_device_id device_id, DeviceRecord* device_record){
                            sizeof(cl_platform_id),
                            &(device_record->platform),
                            NULL);
-  /*
-  cl_uint                     preferred_vector_width_char;
-  cl_uint                     preferred_vector_width_short;
-  cl_uint                     preferred_vector_width_int;
-  cl_uint                     preferred_vector_width_long;
-  cl_uint                     preferred_vector_width_float;
-  cl_uint                     preferred_vector_width_double;
-  char                        profile[PROFILE_BUFFER_SIZE];
-  size_t                      profiling_timer_resolution;
-  cl_command_queue_properties queue_properties;
-  cl_device_fp_config         single_fp_config;
-  cl_device_type              type;
-  char                        vendor[VENDOR_BUFFER_SIZE];
-  cl_uint                     vendor_id;
-  char                        device_version[DEVICE_VERSION_BUFFER_SIZE];
-  char                        driver_version[DRIVER_VERSION_BUFFER_SIZE];
-  */
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR,
+                           sizeof(cl_uint),
+                           &(device_record->preferred_vector_width_char),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT,
+                           sizeof(cl_uint),
+                           &(device_record->preferred_vector_width_short),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT,
+                           sizeof(cl_uint),
+                           &(device_record->preferred_vector_width_int),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG,
+                           sizeof(cl_uint),
+                           &(device_record->preferred_vector_width_long),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT,
+                           sizeof(cl_uint),
+                           &(device_record->preferred_vector_width_float),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE,
+                           sizeof(cl_uint),
+                           &(device_record->preferred_vector_width_double),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PROFILE,
+                           sizeof(char)*PROFILE_BUFFER_SIZE,
+                           &(device_record->profile),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_PROFILING_TIMER_RESOLUTION,
+                           sizeof(size_t),
+                           &(device_record->profiling_timer_resolution),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_QUEUE_PROPERTIES,
+                           sizeof(cl_command_queue_properties),
+                           &(device_record->queue_properties),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_SINGLE_FP_CONFIG,
+                           sizeof(size_t),
+                           &(device_record->profiling_timer_resolution),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_TYPE,
+                           sizeof(cl_device_type),
+                           &(device_record->type),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_VENDOR,
+                           sizeof(char)*VENDOR_BUFFER_SIZE,
+                           &(device_record->vendor),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DEVICE_VENDOR_ID,
+                           sizeof(cl_uint),
+                           &(device_record->vendor_id),
+                           NULL);
+  status = clGetDeviceInfo(device_id,
+                           CL_DRIVER_VERSION,
+                           sizeof(char)*DRIVER_VERSION_BUFFER_SIZE,
+                           &(device_record->driver_version),
+                           NULL);
 }
